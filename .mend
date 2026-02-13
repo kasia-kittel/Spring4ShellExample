@@ -1,0 +1,63 @@
+{
+  "settingsInheritedFrom": "nexmo/whitesource-config",
+  "scanSettings": {
+        "baseBranches": [
+            "wip",
+        ],
+        "enableLicenseViolations": true,
+        "enableIaC": true,
+        "enableReachability": true,
+        "exploitability": true
+  },
+ "leastVulnerablePackageSettings": {                 
+    "enabled": true     
+  }
+  "remediateSettings": {
+    "enableRenovate": true,
+    "workflowRules": {
+      "enabled": true,
+      "minVulnerabilitySeverity": "LOW"
+    },
+    "extends": [
+      "config:base",
+      "github>whitesource/merge-confidence:beta",
+      ":semanticCommits",
+      ":rebaseStalePrs",
+      "docker:enableMajor",
+      "mergeConfidence:all-badges"
+    ],
+    "baseBranches": ["wip"],
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "Renovate Dashboard 🚧",
+    "osvVulnerabilityAlerts": true,
+    "dependencyDashboardOSVVulnerabilitySummary": "all",
+    "major": {
+      "dependencyDashboardApproval": true
+    },
+    "packageRules": [
+      {
+        "enabled": true,
+        "matchDatasources": [
+          "docker"
+        ],
+        "matchUpdateTypes": [
+          "minor"
+        ]
+      },
+      {
+        "matchUpdateTypes": ["patch", "minor"],
+        "labels": ["patch release"]
+      },
+      {
+        "matchDepTypes": ["devDependencies"],
+        "matchUpdateTypes": ["patch", "minor"],
+        "groupName": "devDependencies (non-major)",
+        "groupSlug": "dev-dependencies-non-major"
+      }
+    ],
+    "minimumReleaseAge": "1 days",
+    "prConcurrentLimit": 5,
+    "separateMinorPatch": true,
+    "separateMultipleMajor": true
+  }
+}
