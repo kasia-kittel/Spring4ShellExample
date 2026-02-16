@@ -6,6 +6,7 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
+    update-types: ["version-update:semver-patch", "version-update:semver-minor", "version-update:semver-major"]
     
   # Scan Java dependencies (Maven)
   - package-ecosystem: "maven"
